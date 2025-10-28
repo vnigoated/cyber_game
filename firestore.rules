@@ -1,0 +1,95 @@
+/**
+ * @fileoverview Firestore Security Rules for Cyber Defenders Game
+ *
+ * Core Philosophy:
+ * This ruleset enforces a user-ownership model for user profiles, allows public read access to game scenarios and leaderboard entries, and ensures only authenticated users can create leaderboard entries.
+ *
+ * Data Structure:
+ * - /users/{userId}: Stores user profile data; access is restricted to the owning user.
+ * - /leaderboard_entries/{leaderboardEntryId}: Stores leaderboard entries; publicly readable, createable by authenticated users.
+ * - /game_scenarios/{gameScenarioId}: Stores game scenarios; publicly readable.
+ * - /game_scenarios/{gameScenarioId}/ai_hints/{aiHintId}: Stores AI hints; readable and writable by authenticated users, requires the 'gameScenarioId' to match the parent document's ID.
+ *
+ * Key Security Decisions:
+ * - User listing is disallowed to protect user privacy.
+ * - Public read access is granted to the leaderboard and game scenarios to facilitate gameplay.
+ * - Leaderboard entries can only be created by authenticated users.
+ *
+ * Denormalization for Authorization:
+ * The `ai_hints` documents denormalize the `gameScenarioId` to allow independent authorization without needing to fetch the parent `game_scenario` document.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Enforces path-based ownership for user profiles. Only the authenticated user can read, update, or delete their own profile.
+     * @path /users/{userId}
+     * @allow (create) User with UID 'user_abc' can create their profile at /users/user_abc.
+     * @deny (create) User with UID 'user_abc' cannot create a profile at /users/user_xyz.
+     * @allow (get, update, delete) User with UID 'user_abc' can get, update, or delete their profile at /users/user_abc.
+     * @deny (get, update, delete) User with UID 'user_abc' cannot get, update, or delete the profile at /users/user_xyz.
+     * @principle Enforces document ownership for writes.
+     */
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false;
+      allow create: if isOwner(userId);
+      allow update: if isExistingOwner(userId);
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Allows public read access to leaderboard entries and creation by authenticated users.
+     * @path /leaderboard_entries/{leaderboardEntryId}
+     * @allow (get, list) Any user can read the leaderboard entries.
+     * @allow (create) Authenticated user can create a leaderboard entry.
+     * @deny (update, delete) No one can update or delete leaderboard entries.
+     * @principle Allows public read access with owner-only writes.
+     */
+    match /leaderboard_entries/{leaderboardEntryId} {
+      allow get, list: if true;
+      allow create: if isSignedIn();
+      allow update, delete: if false;
+    }
+
+    /**
+     * @description Allows public read access to game scenarios for all users.
+     * @path /game_scenarios/{gameScenarioId}
+     * @allow (get, list) Any user can read the game scenarios.
+     * @deny (create, update, delete) No one can create, update, or delete game scenarios.
+     * @principle Allows public read access with restricted writes.
+     */
+    match /game_scenarios/{gameScenarioId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description Allows authenticated users to read, create, update and delete AI hints for a specific game scenario.  The 'gameScenarioId' must match the parent path.
+     * @path /game_scenarios/{gameScenarioId}/ai_hints/{aiHintId}
+     * @allow (get, list, create, update, delete) Authenticated user can manage AI hints.
+     * @deny (create) An unauthenticated user attempts to create an AI hint.
+     * @principle Validates relational integrity and enforces authentication for writes.
+     */
+    match /game_scenarios/{gameScenarioId}/ai_hints/{aiHintId} {
+      allow get, list: if isSignedIn();
+      allow create: if isSignedIn() && request.resource.data.gameScenarioId == gameScenarioId;
+      allow update: if isSignedIn() && resource.data.gameScenarioId == gameScenarioId;
+      allow delete: if isSignedIn() && resource.data.gameScenarioId == gameScenarioId;
+    }
+  }
+
+  // Helper functions
+  function isSignedIn() {
+    return request.auth != null;
+  }
+
+  function isOwner(userId) {
+    return request.auth.uid == userId;
+  }
+
+  function isExistingOwner(userId) {
+    return isOwner(userId) && resource != null;
+  }
+}

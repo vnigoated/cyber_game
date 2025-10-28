@@ -1,0 +1,64 @@
+{
+  "placeholderImages": [
+    {
+      "id": "agent-nova",
+      "description": "Avatar for Agent Nova",
+      "imageUrl": "https://images.unsplash.com/photo-1610655507808-a59293f4e332?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc2MTA1NjI0N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "ceo-patel",
+      "description": "Avatar for CEO Patel",
+      "imageUrl": "https://images.unsplash.com/photo-1551862390-7894b509f8ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjZW8lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjEwNzAzODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ceo portrait"
+    },
+    {
+      "id": "jamie-it",
+      "description": "Avatar for Jamie from IT",
+      "imageUrl": "https://images.unsplash.com/photo-1504639725590-34d0984388bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0ZWNoJTIwc3VwcG9ydHxlbnwwfHx8fDE3NjEwNTk3NTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tech support"
+    },
+    {
+      "id": "riya-hr",
+      "description": "Avatar for Riya from HR",
+      "imageUrl": "https://images.unsplash.com/photo-1592621385612-4d7129426394?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx3b21hbiUyMHNtaWxpbmd8ZW58MHx8fHwxNzYxMDMyOTIyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman smiling"
+    },
+    {
+      "id": "alex-finance",
+      "description": "Avatar for Alex from Finance",
+      "imageUrl": "https://images.unsplash.com/photo-1505925456693-124134d66749?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGVyc29uJTIwc3VpdHxlbnwwfHx8fDE3NjEwMzEzNzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person suit"
+    },
+    {
+      "id": "maya-receptionist",
+      "description": "Avatar for Maya the Receptionist",
+      "imageUrl": "https://images.unsplash.com/photo-1752317591916-ed189e55bf25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxyZWNlcHRpb25pc3QlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjEwODA2NzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "receptionist portrait"
+    },
+    {
+      "id": "unknown-caller",
+      "description": "Avatar for an unknown caller",
+      "imageUrl": "https://images.unsplash.com/photo-1557844681-b0da6a516dc9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxoYWNrZXIlMjBzaWxob3VldHRlfGVufDB8fHx8MTc2MTA4MDY3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hacker silhouette"
+    },
+    {
+      "id": "random-stranger",
+      "description": "Avatar for a random stranger",
+      "imageUrl": "https://images.unsplash.com/photo-1654066142660-adc1e2d44566?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxob29kZWQlMjBtYW58ZW58MHx8fHwxNzYxMDgwNjc0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hooded man"
+    },
+    {
+      "id": "social-media-influencer",
+      "description": "Avatar for a social media influencer",
+      "imageUrl": "https://images.unsplash.com/photo-1573152143286-0c422b4d2175?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzb2NpYWwlMjBtZWRpYXxlbnwwfHx8fDE3NjEwNzE4MDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "social media"
+    },
+    {
+      "id": "friend-request-bot",
+      "description": "Avatar for a friend request bot",
+      "imageUrl": "https://images.unsplash.com/photo-1578083386368-dcb6d17181da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxyb2JvdCUyMGZhY2V8ZW58MHx8fHwxNzYwOTcxMTg5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "robot face"
+    }
+  ]
+}
