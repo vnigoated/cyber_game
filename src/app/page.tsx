@@ -5,8 +5,9 @@ import type { GameState, Scenario, Mistake } from '@/lib/types';
 import { SCENARIOS } from '@/lib/scenarios';
 import IntroScreen from '@/components/game/IntroScreen';
 import GameScreen from '@/components/game/GameScreen';
+import AdventureMode from '@/components/game/AdventureMode';
 import DebriefScreen from '@/components/game/DebriefScreen';
-import MatrixBackground from '@/components/game/MatrixBackground';
+import RetroGridBackground from '@/components/game/RetroGridBackground';
 import { useAuth, useUser, useFirestore, addDocumentNonBlocking } from '@/firebase';
 import { initiateAnonymousSignIn } from '@/firebase';
 import { collection } from 'firebase/firestore';
@@ -79,7 +80,7 @@ export default function Home() {
         return <IntroScreen onStart={startGame} />;
       case 'playing':
         return (
-          <GameScreen
+          <AdventureMode
             key={gameKey}
             scenarios={scenarios}
             onFinish={finishGame}
@@ -94,10 +95,12 @@ export default function Home() {
     }
   };
 
+  const isPlaying = gameState === 'playing';
+
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden p-4 sm:p-6 md:p-8">
-      <MatrixBackground />
-      <div className="z-10 w-full max-w-4xl">{renderGameState()}</div>
+    <main className={`relative flex min-h-screen flex-col items-center justify-center overflow-hidden ${!isPlaying ? 'p-4 sm:p-6 md:p-8' : ''}`}>
+      <RetroGridBackground />
+      <div className={`z-10 w-full ${!isPlaying ? 'max-w-4xl' : 'h-screen'}`}>{renderGameState()}</div>
     </main>
   );
 }

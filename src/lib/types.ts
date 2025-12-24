@@ -38,5 +38,5 @@ export type Certification = {
   level: string;
   minScore: number;
   title: string;
-  badge: LucideIcon;
+  badge: string;
 };
